@@ -81,11 +81,11 @@ Describe "Testing Get-CUClassConstructor"{
 
         
             foreach($w in $Constructors){
-                    if($w.Properties){
+                    if($w.Parameter){
 
                         it "$($w.Name) should have property of type 'ClassProperty[]'" {
 
-                            $w.Properties.GetType().Name | should be 'ClassProperty[]'
+                            $w.Parameter.GetType().Name | should be 'ClassProperty[]'
                         }
                     }
             }

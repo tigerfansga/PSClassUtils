@@ -7,14 +7,14 @@ InModuleScope PSClassUtils -ScriptBlock {
         Context "[ClassMethod] Constructors and Instantiation" {
 
         
-            it '[ClassMethod][Instantiation] (Empty ClassProperty Array) should create an instance without throwing' {
-                $Properties = [ClassProperty[]]@()
+            it '[ClassMethod][Instantiation] (Empty ClassParameter Array) should create an instance without throwing' {
+                $Properties = [ClassParameter[]]@()
                 {[ClassMethod]::New("DoStuffPlease", "String", $Properties)} | should not throw
             }
 
-            it '[ClassMethod][Instantiation] (ClassProperty 1 element) should create an instance without throwing' {
-                $Properties = [ClassProperty[]]@()
-                $Properties += [ClassProperty]::New("PropName", "String")
+            it '[ClassMethod][Instantiation] (ClassParameter 1 element) should create an instance without throwing' {
+                $Properties = [ClassParameter[]]@()
+                $Properties += [ClassParameter]::New("PropName", "String")
                 {[ClassMethod]::New("DoStuffPlease", "String", $Properties)} | should not throw
             }
 
@@ -32,15 +32,15 @@ InModuleScope PSClassUtils -ScriptBlock {
         
             it '[ClassMethod][Properties] Instance should have 3 Properties' {
             
-                $Properties = [ClassProperty[]]@()
+                $Properties = [ClassParameter[]]@()
                 $Instance = [ClassMethod]::New("DoStuffPlease", "String", $Properties)
                 ($Instance | gm | ? {$_.MemberType -eq "Property"} | measure).Count | should be 3
             }
 
-            $Properties = [ClassProperty[]]@()
-            $Properties += [ClassProperty]::New("PropName", "String")
+            $Properties = [ClassParameter[]]@()
+            $Properties += [ClassParameter]::New("PropName", "String")
             $Instance = [ClassMethod]::New("DoStuffPlease", "String", $Properties)
-            $Values = @("Name", "ReturnType", "Properties")
+            $Values = @("Name", "ReturnType", "Parameter")
             Foreach ($prop in $values) {
         
                 it "[ClassMethod][Properties][$($prop)] Should be present on instance" {

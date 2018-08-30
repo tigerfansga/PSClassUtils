@@ -38,10 +38,10 @@ Function Get-CUClassMethod{
      Foreach($Method in $Methods){
          $Parameters = $Method.GetParameters()
          If($Parameters){
-             [ClassProperty[]]$Params = @()
+             [ClassParameter[]]$Params = @()
              foreach($Parameter in $Parameters){
 
-                $Params += [ClassProperty]::New($Parameter.Name,$Parameter.ParameterType)
+                $Params += [ClassParameter]::New($Parameter.Name,$Parameter.ParameterType)
 
              }
          }

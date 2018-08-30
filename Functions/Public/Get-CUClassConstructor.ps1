@@ -34,14 +34,14 @@ Function Get-CUClassConstructor{
         
         $Parameters = $Constructor.GetParameters()
         If($Parameters){
-            [ClassProperty[]]$Params = @()
+            [ClassParameter[]]$Para = @()
             foreach($Parameter in $Parameters){
 
-                $Params += [ClassProperty]::New($Parameter.Name,$Parameter.ParameterType)
+                $Para += [ClassParameter]::New($Parameter.Name,$Parameter.ParameterType)
 
             }
         }
-        [ClassConstructor]::New($ClassName,$ClassName,$Params)
+        [ClassConstructor]::New($ClassName,$Params)
          
     }
 }

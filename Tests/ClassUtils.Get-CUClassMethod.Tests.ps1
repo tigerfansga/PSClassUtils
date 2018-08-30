@@ -66,7 +66,7 @@ Describe "Testing Get-CUClassMethod"{
         }
 
         Context 'Validating Properties' {
-            $Properties = @("Name","Properties","ReturnType")
+            $Properties = @("Name","Parameter","ReturnType")
             $methods = Get-CUClassMethod -ClassName "Wap"
             foreach ($prop in $Properties){
 
@@ -99,9 +99,9 @@ Describe "Testing Get-CUClassMethod"{
                     
                 }
 
-                it "should have property Properties with 3 properties " {
+                it "should have parameter with 3 parameter " {
 
-                    ($DoChildthing4.Properties | Measure).Count | should be 3
+                    ($DoChildthing4.parameter | Measure).Count | should be 3
                     
                 }
                 

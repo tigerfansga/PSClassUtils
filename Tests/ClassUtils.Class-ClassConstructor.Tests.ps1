@@ -10,39 +10,39 @@ InModuleScope PSClassUtils -ScriptBlock {
 
         
             it '[ClassConstructor][Instantiation] (Empty ClassProperty Array) should create an instance without throwing' {
-                $Properties = [ClassProperty[]]@()
-                {[ClassConstructor]::New("DoStuffPlease", "String", $Properties)} | should not throw
+                $Properties = [ClassParameter[]]@()
+                {[ClassConstructor]::New("DoStuffPlease", $Properties)} | should not throw
             }
 
-            it '[ClassConstructor][Instantiation] (ClassProperty 1 element) should create an instance without throwing' {
-                $Properties = [ClassProperty[]]@()
-                $Properties += [ClassProperty]::New("PropName", "String")
-                {[ClassConstructor]::New("DoStuffPlease", "String", $Properties)} | should not throw
+            it '[ClassConstructor][Instantiation] (ClassParameter 1 element) should create an instance without throwing' {
+                $Properties = [ClassParameter[]]@()
+                $Properties += [ClassParameter]::New("PropName", "String")
+                {[ClassConstructor]::New("DoStuffPlease", $Properties)} | should not throw
             }
 
-            it '[ClassConstructor][Instantiation] (ClassProperty 10 elements) should create an instance without throwing' {
-                $Properties = [ClassProperty[]]@()
+            it '[ClassConstructor][Instantiation] (ClassParameter 10 elements) should create an instance without throwing' {
+                $Properties = [ClassParameter[]]@()
                 for ($i = 0; $i++; $i -eq 10) {
-                    $Properties += [ClassProperty]::New("Prop$1", "String")
+                    $Properties += [ClassParameter]::New("Prop$1", "String")
                 }
             
-                {[ClassConstructor]::New("DoStuffPlease", "String", $Properties)} | should not throw
+                {[ClassConstructor]::New("DoStuffPlease", $Properties)} | should not throw
             }
         }
         Context "[ClassConstructor] Properties" {
 
         
-            it '[ClassConstructor][Properties] Instance should have 3 Properties' {
+            it '[ClassConstructor][ClassParameter] Instance should have 2 Properties' {
             
-                $Properties = [ClassProperty[]]@()
-                $Instance = [ClassConstructor]::New("DoStuffPlease", "String", $Properties)
-                ($Instance | gm | ? {$_.MemberType -eq "Property"} | measure).Count | should be 3
+                $Properties = [ClassParameter[]]@()
+                $Instance = [ClassConstructor]::New("DoStuffPlease", $Properties)
+                ($Instance | gm | ? {$_.MemberType -eq "Property"} | measure).Count | should be 2
             }
 
-            $Properties = [ClassProperty[]]@()
-            $Properties += [ClassProperty]::New("PropName", "String")
-            $Instance = [ClassConstructor]::New("DoStuffPlease", "String", $Properties)
-            $Values = @("Name", "ReturnType", "Properties")
+            $Properties = [ClassParameter[]]@()
+            $Properties += [ClassParameter]::New("PropName", "String")
+            $Instance = [ClassConstructor]::New("DoStuffPlease", $Properties)
+            $Values = @("Name", "Parameter")
             Foreach ($prop in $values) {
         
                 it "[ClassConstructor][Properties][$($prop)] Should be present on instance" {
@@ -50,6 +50,12 @@ InModuleScope PSClassUtils -ScriptBlock {
                     ($Instance | gm | ? {$_.MemberType -eq "Property" -and $_.Name -eq $prop}).Name | should be $prop
             
                 }
+            }
+
+            it "[ClassConstructor][Properties][Type] Should be of type 'ClassParameter[]'" {
+                
+                ($Instance.parameter.GetType()).FullName | should be "ClassParameter[]"
+        
             }
 
         }

@@ -1,12 +1,10 @@
 Class ClassConstructor {
     [String]$Name
-    [String]$ReturnType
-    [ClassProperty[]]$Properties
+    [ClassParameter[]]$Parameter
 
-    ClassConstructor([String]$Name,[String]$ReturnType,[ClassProperty[]]$Properties){
+    ClassConstructor([String]$Name,[ClassParameter[]]$Parameter){
         $this.Name = $Name
-        $This.ReturnType = $ReturnType
-        $This.Properties = $Properties
+        $This.Parameter = $Parameter
     }
 
 }
