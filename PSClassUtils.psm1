@@ -15,7 +15,7 @@ foreach ($Private in $PrivateFunctions){
 }
 
 write-verbose "Loading Public Functions"
-$PublicFunctions = gci "$ScriptPath\Functions\public" -Filter *.ps1 | Select -Expand FullName
+$PublicFunctions = gci "$ScriptPath\Functions\Public" -Filter *.ps1 | Select -Expand FullName
 
 
 foreach ($public in $PublicFunctions){
