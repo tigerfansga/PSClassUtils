@@ -27,7 +27,7 @@ foreach ($public in $PublicFunctions){
     }
 }
 
-$PrivateClasses = gci "$ScriptPath\Classes\Private" -Filter *.ps1 | sort Name | Select -Expand FullName
+$PrivateClasses = gci "$ScriptPath\Classes\Private" -Filter *.ps1 | sort-object Name | Select -Expand FullName
 
 
 foreach ($Private in $PrivateClasses){
