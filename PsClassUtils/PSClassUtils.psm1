@@ -29,7 +29,6 @@ foreach ($public in $PublicFunctions){
 
 $PrivateClasses = gci "$ScriptPath\Classes\Private" -Filter *.ps1 | Sort-Object Name | Select -Expand FullName
 
-
 foreach ($Private in $PrivateClasses){
     write-verbose "importing Class $($function)"
     try{
